@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Home - Dati Sensori</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #0D47A1;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 26px;
+            font-weight: bold;
+            user-select: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .table-wrapper {
+            max-height: 70vh;
+            overflow-x: auto;
+            overflow-y: auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 1000px;
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            background-color: #1976D2;
+            color: white;
+            padding: 12px;
+            font-size: 14px;
+            border-bottom: 2px solid #1565C0;
+            z-index: 2;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #d0d7de;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e3f2fd;
+        }
+
+        tr:hover {
+            background-color: #bbdefb;
+        }
+
+        .empty {
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            color: #444;
+            border-top: 1px solid #ccc;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Smart Home - Visualizzazione dei dati dei sensori
+    </header>
+
+    <div class="container">
+        <div class="table-wrapper">
+            {% if data %}
+                <table>
+                    <thead>
+                        <tr>
+                            {% for header in headers %}
+                                <th>{{ header }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                            <tr>
+                                {% for header in headers %}
+                                    <td>{{ row.get(header, "") }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="empty">Nessun dato disponibile al momento.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        Tesina realizzata da Mazzuca Maristella – Corso di Pervasive computing e servizi cloud, UNIMORE 2025
+    </footer>
+</body>
+</html>
