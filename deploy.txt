@@ -19,4 +19,5 @@ gcloud functions deploy check_anomaly \
   --entry-point check_anomaly \
   --region europe-west1 \
   --memory 1GB \
+  --allow-unauthenticated \
   --set-env-vars EMAIL_FROM=itsmarismazz@gmail.com,EMAIL_TO=itsmarismazz@gmail.com,EMAIL_PASSWORD=vkddwgnrkpgqhxyb

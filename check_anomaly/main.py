@@ -10,7 +10,7 @@ from datetime import datetime
 
 db = firestore.Client()
 
-SOGLIA_DELTA = 0.5
+SOGLIA_DELTA = 0.25
 MODELLO_PATH = "model.joblib"
 
 # Credenziali per inviare email 
