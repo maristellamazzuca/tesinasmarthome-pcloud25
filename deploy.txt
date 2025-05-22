@@ -1,0 +1,22 @@
+gcloud functions deploy receive_data \
+  --runtime python39 \
+  --trigger-http \
+  --source ./receive_data \
+  --region europe-west1 \
+  --allow-unauthenticated 
+
+gcloud functions deploy view_data \
+  --runtime python311 \
+  --trigger-http \
+  --source ./view_data \
+  --region europe-west1 \
+  --allow-unauthenticated
+
+gcloud functions deploy check_anomaly \
+  --runtime python311 \
+  --trigger-http \
+  --source ./check_anomaly \
+  --entry-point check_anomaly \
+  --region europe-west1 \
+  --memory 1GB \
+  --set-env-vars EMAIL_FROM=itsmarismazz@gmail.com,EMAIL_TO=itsmarismazz@gmail.com,EMAIL_PASSWORD=vkddwgnrkpgqhxyb
