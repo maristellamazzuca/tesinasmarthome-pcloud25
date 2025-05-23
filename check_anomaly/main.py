@@ -12,16 +12,10 @@ db = firestore.Client()
 
 SOGLIA_DELTA = 0.25
 MODELLO_PATH = "model.joblib"
-
 # Credenziali per inviare email 
 EMAIL_FROM = os.environ.get("EMAIL_FROM")
 EMAIL_TO = os.environ.get("EMAIL_TO")
 EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-
-# === DEBUG: stampa le variabili (solo per test temporaneo) ===
-print("DEBUG - EMAIL_FROM:", EMAIL_FROM)
-print("DEBUG - EMAIL_TO:", EMAIL_TO)
-print("DEBUG - EMAIL_PASSWORD:", "SET" if EMAIL_PASSWORD else "MISSING")
 
 # Funzione che verifica se la data è nel weekend
 def is_weekend(timestamp_iso):
@@ -33,7 +27,7 @@ def check_anomaly(request):
     dati = request.get_json()
     if not dati or "timestamp" not in dati or "use [kW]" not in dati:
         return "Dati mancanti", 400
-
+    
     try:
         modello = joblib.load(MODELLO_PATH)
         documento = db.collection("sensors").document("sensor1").get()
